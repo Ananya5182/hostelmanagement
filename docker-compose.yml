@@ -1,3 +1,9 @@
+# ==============================================================================
+# CampusStay Multi-Container Docker Orchestration
+# DevOps Engineer: Soham Ajwani (@sohamajwani)
+# Issue: HMS-3 (Docker Compose & Isolated Bridge Network)
+# ==============================================================================
+
 services:
   # ==========================================
   # FastAPI Backend Service (Supabase Client)
