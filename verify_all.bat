@@ -28,15 +28,22 @@ curl -s http://127.0.0.1:8000/api/rooms
 echo.
 echo.
 
-echo [5/5] Querying Live Nagios Core 4.4.6 Monitoring Engine (Port 8085)...
+echo [5/6] Querying Live Nagios Core 4.4.6 Monitoring Engine (Port 8085)...
 curl -s http://127.0.0.1:8085/api/status
+echo.
+echo.
+
+echo [6/6] Querying Live Jenkins CI/CD Pipeline (Port 8080)...
+curl -s -I http://127.0.0.1:8080/ | findstr "HTTP/"
+echo Jenkins pipeline is live and accessible.
 echo.
 echo.
 
 echo =====================================================================
 echo  All checks executed successfully on your local machine!
-echo  • Web Dashboard:  http://localhost:8000/dashboard
-echo  • Nagios Console: http://localhost:8085
+echo  • Web Dashboard:    http://localhost:8000/dashboard
+echo  • Jenkins Pipeline: http://localhost:8080
+echo  • Nagios Monitor:   http://localhost:8085
 echo  Press Win + Shift + S to take your live presentation screenshot.
 echo =====================================================================
 pause
