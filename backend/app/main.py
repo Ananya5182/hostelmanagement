@@ -1,3 +1,9 @@
+# ==============================================================================
+# CampusStay Enterprise Hostel Management System - Core REST API
+# Principal Architect & Backend Lead: Ananya (@Ananya5182)
+# Issue: HMS-1 (FastAPI Microservice & Transactional Supabase Allocation Engine)
+# ==============================================================================
+
 from typing import List, Dict, Any
 from pathlib import Path
 from fastapi import FastAPI, Depends, HTTPException, status, Response, Request
