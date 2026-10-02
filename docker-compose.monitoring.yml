@@ -1,0 +1,18 @@
+services:
+  # ==========================================
+  # Nagios Core 4.x Monitoring Service
+  # Web Console: http://localhost:8085 (nagiosadmin / nagiosadmin)
+  # ==========================================
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: hostel-nagios
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    volumes:
+      - ./nagios-config/hostel_services.cfg:/opt/nagios/etc/conf.d/hostel_services.cfg:ro
+    networks:
+      - hostel-network
+    environment:
+      - NAGIOSADMIN_USER=nagiosadmin
+      - NAGIOSADMIN_PASS=nagiosadmin

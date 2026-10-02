@@ -1,0 +1,57 @@
+services:
+  # ==========================================
+  # FastAPI Backend Service (Supabase Client)
+  # ==========================================
+  hostel-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hostel-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL:-https://uyiybnpeiwkfedihmnrl.supabase.co}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - PORT=8000
+    env_file:
+      - .env
+    networks:
+      - hostel-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ==========================================
+  # Nginx Frontend & Reverse Proxy Service
+  # ==========================================
+  hostel-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: hostel-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      hostel-backend:
+        condition: service_healthy
+    networks:
+      - hostel-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+# ==========================================
+# Isolated Bridge Network
+# ==========================================
+networks:
+  hostel-network:
+    driver: bridge
+    name: hostel-network
