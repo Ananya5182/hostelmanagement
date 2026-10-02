@@ -1,6 +1,8 @@
 /**
  * CampusStay - Enterprise Hostel Management System
  * Frontend Client-Side Application Logic (Vanilla JavaScript)
+ * Author: Janvi Chattani (@janvichattani21-glitch)
+ * Issue: HMS-2 (Reactive Allocation Form & Dynamic Dropdown)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
